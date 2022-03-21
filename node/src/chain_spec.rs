@@ -227,6 +227,20 @@ fn testnet_genesis(
 			accounts: {
 				let mut map = BTreeMap::new();
 				map.insert(
+                    // H160 address of Alice dev account
+                    // Derived from SS58 (42 prefix) address
+                    // SS58: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+                    // hex: 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
+                    // Using the full hex key, truncating to the first 20 bytes (the first 40 hex chars)
+                    H160::from_str("e09f325f8d3be99d9e3c8ed258ba1b3403017985").unwrap(),
+                    pallet_evm::GenesisAccount {
+                        balance: (2018030320150719 as u128 * 10_u128.pow(18)).into(),
+                        nonce: Default::default(),
+                        storage: BTreeMap::new(),
+                        code: Default::default()
+                    },
+                );
+                map.insert(
 					// H160 address of Alice dev account
 					// Derived from SS58 (42 prefix) address
 					// SS58: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
